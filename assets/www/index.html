@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+        </title>
+        <link rel="stylesheet" href="css/my.css" />
+       
+		<script type="text/javascript" src="js/cordova-2.1.0.js"></script>
+        <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.1.0.js"></script>
+		<script type="text/javascript" src="js/funcoes.js"></script>
+
+		<script type="text/javascript" src="js/bancoDeDados.js"></script>
+		<script type="text/javascript" src="js/objetos.js"></script>
+		<script type="text/javascript" src="js/comunicacao.js"></script>
+		<script type="text/javascript" src="js/Sincronizador.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			function onDeviceReady() {
+                BancoDados.MontarBanco();
+                Objetos.Atualizar();
+            }
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+            $(function () {     
+                onDeviceReady();
+            });            
+		</script>
+    </head>    
+<body> 
+
+<div data-role="page" id="objeto">
+	<div data-theme="a" data-role="header">
+		<a data-role="button" data-icon="refresh" href="#one" class="ui-btn-left" onclick="Objetos.Sincronizar()">
+			Atualizar
+		</a>
+		<a data-role="button" data-icon="plus" href="#" onclick="Objetos.Adicionar()" data-transition="slide" class="ui-btn-right">
+			Novo
+		</a>
+		<h3>
+			Corrails
+		</h3>
+	</div>
+	<div data-role="content">
+		<ul id="lst_objetos" data-role="listview" data-divider-theme="" data-inset="true">
+		</ul>
+	</div>
+    <div data-theme="" data-role="footer">
+        <h3>
+            Vizir
+        </h3>
+    </div>    
+</div>
+
+<div data-role="page" id="addObjeto" data-add-back-btn="true">
+    <div data-theme="a" data-role="header">
+        <h3>
+            Corrails - Novo
+        </h3>
+    </div>
+    <div data-role="content">
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="new_id">
+                    Codigo
+                </label>
+                <input name="new_id" id="new_id" placeholder="" value="" type="text" />
+            </fieldset>
+        </div>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <label for="new_descricao">
+                    Detalhe
+                </label>
+                <textarea name="new_descricao" id="new_descricao" placeholder="">
+                </textarea>
+            </fieldset>
+        </div>
+        <input type="submit" value="Adicionar" onclick="Objetos.Salvar()" />   
+    </div>
+    <div data-theme="" data-role="footer">
+        <h3>
+            Vizir
+        </h3>
+    </div>    
+</div>
+
+<div data-role="page" id="detailsObject" data-add-back-btn="true">
+     <div data-theme="a" data-role="header">       
+        <h3>
+            Corrails - Detalhes
+        </h3>
+    </div>
+    <div data-role="content">
+        <div id="divLista" class="ui-grid-a">
+        </div>
+    </div>
+    <div data-theme="" data-role="footer">
+        <h3>
+            Vizir
+        </h3>
+    </div>    
+</div>
+</body>
+</html>
